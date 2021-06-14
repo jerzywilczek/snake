@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 project(snake)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 set(SFML_INCLUDE_DIR "/home/rewieer/Libraries/SFML-2.5.1/include")
 set(SFML_LIBRARY_DIR "/home/rewieer/Libraries/SFML-2.5.1/lib")
@@ -18,5 +18,5 @@ if(SFML_FOUND)
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
 endif()
 
-add_executable(snake main.cpp fieldObjects/FieldObject.cpp fieldObjects/FieldObject.h fieldObjects/Wall.cpp fieldObjects/Wall.h globals.h fieldObjects/Food.cpp fieldObjects/Food.h fieldObjects/SnakeSegment.cpp fieldObjects/SnakeSegment.h)
+add_executable(snake main.cpp fieldObjects/FieldObject.cpp fieldObjects/FieldObject.h fieldObjects/Wall.cpp fieldObjects/Wall.h globals.h fieldObjects/Food.cpp fieldObjects/Food.h fieldObjects/SnakeSegment.cpp fieldObjects/SnakeSegment.h area/Field.cpp area/Field.h area/Area.cpp area/Area.h)
 target_link_libraries (snake sfml-graphics sfml-window sfml-system)
