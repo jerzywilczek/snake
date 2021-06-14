@@ -7,7 +7,6 @@
 
 
 #include <optional>
-#include "../fieldObjects/FieldObject.h"
 
 class Field {
 public:
