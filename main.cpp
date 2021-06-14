@@ -1,10 +1,11 @@
 #include <SFML/Graphics.hpp>
+#include "globals.h"
+#include "GameDrawer.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(400, 600), "Snake game");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Snake game");
     window.setFramerateLimit(60);
+    GameDrawer drawer(&window, WINDOW_WIDTH, WINDOW_HEIGHT, FIELD_WIDTH, BACKGROUND_COLOR, MAIN_COLOR, MAIN_COLOR, MAIN_COLOR);
 
     while (window.isOpen()) {
         sf::Event event{};
@@ -13,9 +14,8 @@ int main() {
                 window.close();
         }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        drawer.update();
+
     }
 
     return 0;

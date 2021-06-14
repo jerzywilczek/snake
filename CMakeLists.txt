@@ -18,5 +18,5 @@ if(SFML_FOUND)
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
 endif()
 
-add_executable(snake main.cpp fieldObjects/FieldObject.cpp fieldObjects/FieldObject.h fieldObjects/Wall.cpp fieldObjects/Wall.h globals.h fieldObjects/Food.cpp fieldObjects/Food.h fieldObjects/SnakeSegment.cpp fieldObjects/SnakeSegment.h area/Field.cpp area/Field.h area/Area.cpp area/Area.h)
+add_executable(snake main.cpp fieldObjects/FieldObject.cpp fieldObjects/FieldObject.h fieldObjects/Wall.cpp fieldObjects/Wall.h globals.h fieldObjects/Food.cpp fieldObjects/Food.h fieldObjects/SnakeSegment.cpp fieldObjects/SnakeSegment.h area/Field.cpp area/Field.h area/Area.cpp area/Area.h Snake.cpp Snake.h GameDrawer.cpp GameDrawer.h)
 target_link_libraries (snake sfml-graphics sfml-window sfml-system)
