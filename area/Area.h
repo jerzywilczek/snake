@@ -7,20 +7,45 @@
 
 
 #include <vector>
+#include <list>
+#include <memory>
 #include "Field.h"
+#include "../Snake.h"
+
+class Snake;
 
 class Area {
 public:
     Area(int width, int height);
 
     auto begin() { return fields.begin(); }
+
     auto end() { return fields.end(); }
-    Field& at(int x, int y) {return fields[y * width + x];}
+
+    Field &at(int x, int y) { return fields[y * width + x]; }
+
+    void update();
+
+    void queueUpdate(Field &field);
+
+    void clearUpdates();
+
+    std::list<Field *> &forUpdate();
+
+    void gameOver() { isGameOver = true; }
 
 private:
     int width;
     int height;
-    std::vector<Field> fields;
+    std::vector<Field> fields{};
+    std::unique_ptr<Snake> snake;
+    std::list<Field *> queuedUpdates{};
+    bool isGameOver{false};
+    Field *foodField{nullptr};
+
+    void setGame();
+
+    Field *pickFoodField();
 };
 
 
