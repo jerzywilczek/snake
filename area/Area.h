@@ -7,7 +7,7 @@
 
 
 #include <vector>
-#include <list>
+#include <set>
 #include <memory>
 #include "Field.h"
 #include "../Snake.h"
@@ -30,7 +30,7 @@ public:
 
     void clearUpdates();
 
-    std::list<Field *> &forUpdate();
+    std::set<Field *> &forUpdate();
 
     void gameOver() { isGameOver = true; }
 
@@ -39,7 +39,7 @@ private:
     int height;
     std::vector<Field> fields{};
     std::unique_ptr<Snake> snake;
-    std::list<Field *> queuedUpdates{};
+    std::set<Field *> queuedUpdates{};
     bool isGameOver{false};
     Field *foodField{nullptr};
 

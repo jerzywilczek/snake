@@ -41,19 +41,19 @@ void Area::setGame() {
     }
     pickFoodField();
     for (auto &field : fields) {
-        queuedUpdates.push_back(&field);
+        queueUpdate(field);
     }
 }
 
 void Area::queueUpdate(Field &field) {
-    queuedUpdates.push_back(&field);
+    queuedUpdates.insert(&field);
 }
 
 void Area::clearUpdates() {
     queuedUpdates.clear();
 }
 
-std::list<Field *> &Area::forUpdate() {
+std::set<Field *> &Area::forUpdate() {
     return queuedUpdates;
 }
 
