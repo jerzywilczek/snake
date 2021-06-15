@@ -72,3 +72,11 @@ Field *Area::pickFoodField() {
     }
     return foodField;
 }
+
+size_t Area::score() {
+    return snake->length();
+}
+
+void Area::keyPressed(sf::Keyboard::Key key) {
+    snake->updateDirection(key);
+}

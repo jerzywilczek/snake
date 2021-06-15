@@ -12,21 +12,27 @@
 
 class GameDrawer {
 public:
-    GameDrawer(sf::RenderWindow *window, int width, int height, int fieldLen, const sf::Color &backgroundColor,
-               const sf::Color &wallColor, const sf::Color &snakeColor, const sf::Color &foodColor);
+    GameDrawer(sf::RenderWindow *window, int width, int height, int fieldLen, const sf::Time minTimePerMove,
+               const sf::Time maxTimePerMove, const sf::Color &backgroundColor, const sf::Color &wallColor,
+               const sf::Color &snakeColor, const sf::Color &foodColor);
 
-    void update();
+    void update(sf::Time deltaTime);
+    void keyPressed(sf::Keyboard::Key key);
 
 private:
     int width;
     int height;
     int fieldLen;
     sf::RenderWindow *window;
+    const sf::Time minTimePerMove;
+    const sf::Time maxTimePerMove;
     Area area;
     sf::RectangleShape empty;
     sf::RectangleShape wall;
     sf::RectangleShape snake;
     sf::RectangleShape food;
+
+    static double squeezeFunction(double x) ;
 
 };
 

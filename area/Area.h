@@ -9,8 +9,10 @@
 #include <vector>
 #include <set>
 #include <memory>
+#include <SFML/Window/Keyboard.hpp>
 #include "Field.h"
 #include "../Snake.h"
+
 
 class Snake;
 
@@ -33,6 +35,10 @@ public:
     std::set<Field *> &forUpdate();
 
     void gameOver() { isGameOver = true; }
+
+    size_t score();
+
+    void keyPressed(sf::Keyboard::Key key);
 
 private:
     int width;

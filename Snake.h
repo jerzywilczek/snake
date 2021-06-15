@@ -26,12 +26,12 @@ public:
 
     size_t length() { return body.size(); }
 
+    void updateDirection(const sf::Keyboard::Key keyPressed);
+
 private:
     Area *area;
     std::list<Field *> body;
     Direction movingDirection;
-
-    void updateDirection();
 };
 
 
