@@ -6,13 +6,13 @@
 #include "Snake.h"
 
 void Snake::updateDirection(const sf::Keyboard::Key keyPressed) {
-    if (keyPressed == sf::Keyboard::W && movingDirection != Direction::DOWN) {
+    if (keyPressed == sf::Keyboard::W && previousMovingDirection != Direction::DOWN) {
         movingDirection = Direction::UP;
-    } else if (keyPressed == sf::Keyboard::D && movingDirection != Direction::LEFT) {
+    } else if (keyPressed == sf::Keyboard::D && previousMovingDirection != Direction::LEFT) {
         movingDirection = Direction::RIGHT;
-    } else if (keyPressed == sf::Keyboard::S && movingDirection != Direction::UP) {
+    } else if (keyPressed == sf::Keyboard::S && previousMovingDirection != Direction::UP) {
         movingDirection = Direction::DOWN;
-    } else if (keyPressed == sf::Keyboard::A && movingDirection != Direction::RIGHT) {
+    } else if (keyPressed == sf::Keyboard::A && previousMovingDirection != Direction::RIGHT) {
         movingDirection = Direction::LEFT;
     }
 }
@@ -36,6 +36,7 @@ void Snake::move() {
             nextX--;
             break;
     }
+    previousMovingDirection = movingDirection;
     nextHeadPosition = &area->at(nextX, nextY);
     bool grow = false;
     switch (nextHeadPosition->getFieldType()) {
@@ -59,7 +60,7 @@ void Snake::move() {
     }
 }
 
-Snake::Snake(int startX, int startY, Area *area) : area{area}, body(), movingDirection{Direction::UP} {
+Snake::Snake(int startX, int startY, Area *area) : area{area} {
     area->at(startX, startY).setFieldType(Field::FieldType::SNAKE);
     area->at(startX, startY + 1).setFieldType(Field::FieldType::SNAKE);
     body.push_back(&area->at(startX, startY));

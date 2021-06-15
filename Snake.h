@@ -30,8 +30,9 @@ public:
 
 private:
     Area *area;
-    std::list<Field *> body;
-    Direction movingDirection;
+    std::list<Field *> body{};
+    Direction movingDirection{Direction::UP};
+    Direction previousMovingDirection{Direction::UP};
 };
 
 
