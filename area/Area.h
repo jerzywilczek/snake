@@ -32,11 +32,11 @@ public:
 
     void clearUpdates();
 
-    std::set<Field *> &forUpdate();
+    const std::set<std::shared_ptr<Field>> &forUpdate() const;
 
     void gameOver() { isGameOver = true; }
 
-    size_t score();
+    size_t score() const;
 
     void keyPressed(sf::Keyboard::Key key);
 
@@ -45,7 +45,7 @@ private:
     int height;
     std::vector<Field> fields{};
     std::unique_ptr<Snake> snake;
-    std::set<Field *> queuedUpdates{};
+    std::set<std::shared_ptr<Field>> queuedUpdates{};
     bool isGameOver{false};
     shared_ptr<Field> foodField{nullptr};
 

@@ -19,21 +19,13 @@ public:
 
     Field(int x, int y, FieldType type = FieldType::EMPTY) : x{x}, y{y}, fieldType{type} {}
 
-    [[nodiscard]] FieldType getFieldType() const {
-        return fieldType;
-    }
+    [[nodiscard]] FieldType getFieldType() const;
 
-    [[nodiscard]] int getX() const {
-        return x;
-    }
+    [[nodiscard]] int getX() const;
 
-    [[nodiscard]] int getY() const {
-        return y;
-    }
+    [[nodiscard]] int getY() const;
 
-    void setFieldType(FieldType type) {
-        fieldType = type;
-    }
+    void setFieldType(FieldType type);
 
 private:
     FieldType fieldType;

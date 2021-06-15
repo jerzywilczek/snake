@@ -11,7 +11,7 @@ void GameDrawer::update(sf::Time deltaTime) {
     sf::Time stepTime = ((float) squeezeFunction((double)area.score()) * (maxTimePerMove - minTimePerMove)) + minTimePerMove;
     if(time > stepTime) {
         area.update();
-        for (auto field : area.forUpdate()) {
+        for (const auto& field : area.forUpdate()) {
             sf::RectangleShape shape;
             switch (field->getFieldType()) {
                 case Field::FieldType::EMPTY:
@@ -39,8 +39,6 @@ void GameDrawer::update(sf::Time deltaTime) {
 GameDrawer::GameDrawer(sf::RenderWindow *window, int width, int height, int fieldLen, const sf::Time minTimePerMove,
                        const sf::Time maxTimePerMove, const sf::Color &backgroundColor, const sf::Color &wallColor,
                        const sf::Color &snakeColor, const sf::Color &foodColor) :
-        width{width},
-        height{height},
         fieldLen{fieldLen},
         window{window},
         minTimePerMove{minTimePerMove},

@@ -24,7 +24,7 @@ public:
 
     void move();
 
-    size_t length() { return body.size(); }
+    size_t length() const { return body.size(); }
 
     void updateDirection(const sf::Keyboard::Key keyPressed);
 

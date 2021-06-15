@@ -5,9 +5,11 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Snake game");
     window.setFramerateLimit(60);
+
     GameDrawer drawer(&window, WINDOW_WIDTH, WINDOW_HEIGHT, FIELD_WIDTH, MIN_STEP_TIME, MAX_STEP_TIME, BACKGROUND_COLOR,
                       MAIN_COLOR,
                       MAIN_COLOR, MAIN_COLOR);
+
     sf::Clock clock;
 
     while (window.isOpen()) {
@@ -21,7 +23,6 @@ int main() {
 
         sf::Time deltaTime = clock.restart();
         drawer.update(deltaTime);
-
     }
 
     return 0;

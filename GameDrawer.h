@@ -20,8 +20,6 @@ public:
     void keyPressed(sf::Keyboard::Key key);
 
 private:
-    int width;
-    int height;
     int fieldLen;
     sf::RenderWindow *window;
     const sf::Time minTimePerMove;

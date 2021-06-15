@@ -19,7 +19,8 @@ void Snake::updateDirection(const sf::Keyboard::Key keyPressed) {
 
 void Snake::move() {
     std::shared_ptr<Field> head = body.front();
-    std::shared_ptr<Field> nextHeadPosition;
+
+//    find next head position
     int nextX = head->getX();
     int nextY = head->getY();
     switch (movingDirection) {
@@ -36,8 +37,11 @@ void Snake::move() {
             nextX--;
             break;
     }
+    std::shared_ptr<Field> nextHeadPosition = std::shared_ptr<Field>(&area->at(nextX, nextY));
+
     previousMovingDirection = movingDirection;
-    nextHeadPosition = std::shared_ptr<Field>(&area->at(nextX, nextY));
+
+//    check what kind of field we're stepping on and react accordingly
     bool grow = false;
     switch (nextHeadPosition->getFieldType()) {
         case Field::FieldType::WALL:
@@ -50,9 +54,13 @@ void Snake::move() {
         case Field::FieldType::EMPTY:
             break;
     }
+
+//    append new head
     body.push_front(nextHeadPosition);
     nextHeadPosition->setFieldType(Field::FieldType::SNAKE);
     area->queueUpdate(*nextHeadPosition);
+
+//    remove tail if didn't grow
     if (!grow) {
         body.back()->setFieldType(Field::FieldType::EMPTY);
         area->queueUpdate(*body.back());
@@ -61,9 +69,11 @@ void Snake::move() {
 }
 
 Snake::Snake(int startX, int startY, Area *area) : area{area} {
+//    head
     area->at(startX, startY).setFieldType(Field::FieldType::SNAKE);
-    area->at(startX, startY + 1).setFieldType(Field::FieldType::SNAKE);
     body.push_back(std::shared_ptr<Field>(&area->at(startX, startY)));
-    body.push_back(std::shared_ptr<Field>(&area->at(startX, startY + 1)));
 
+//    tail
+    area->at(startX, startY + 1).setFieldType(Field::FieldType::SNAKE);
+    body.push_back(std::shared_ptr<Field>(&area->at(startX, startY + 1)));
 }
