@@ -12,8 +12,8 @@
 
 class GameDrawer {
 public:
-    GameDrawer(sf::RenderWindow *window, int width, int height, int fieldLen, const sf::Time minTimePerMove,
-               const sf::Time maxTimePerMove, const sf::Color &backgroundColor, const sf::Color &wallColor,
+    GameDrawer(sf::RenderWindow *window, int width, int height, int fieldLen, sf::Time minTimePerMove,
+               sf::Time maxTimePerMove, const sf::Color &backgroundColor, const sf::Color &wallColor,
                const sf::Color &snakeColor, const sf::Color &foodColor);
 
     void update(sf::Time deltaTime);

@@ -6,7 +6,7 @@
 #include <random>
 
 Area::Area(int width, int height) : width{width}, height{height} {
-    setGame();
+    setGameArea();
     snake = std::make_unique<Snake>(width / 2, height / 2, this);
 
 }
@@ -15,14 +15,14 @@ void Area::update() {
     snake->move();
     pickFoodField();
     if (isGameOver) {
-        setGame();
+        setGameArea();
         snake = std::make_unique<Snake>(width / 2, height / 2, this);
         isGameOver = false;
     }
 
 }
 
-void Area::setGame() {
+void Area::setGameArea() {
     fields.clear();
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
@@ -57,7 +57,7 @@ std::set<Field *> &Area::forUpdate() {
     return queuedUpdates;
 }
 
-Field *Area::pickFoodField() {
+std::shared_ptr<Field> Area::pickFoodField() {
     if (foodField == nullptr || foodField->getFieldType() != Field::FieldType::FOOD) {
         static std::random_device rd;
         static std::mt19937 gen(rd());
@@ -68,7 +68,7 @@ Field *Area::pickFoodField() {
         } while (fields[pos].getFieldType() != Field::FieldType::EMPTY);
         fields[pos].setFieldType(Field::FieldType::FOOD);
         queueUpdate(fields[pos]);
-        foodField = &fields[pos];
+        foodField = std::shared_ptr<Field>(&fields[pos]);
     }
     return foodField;
 }

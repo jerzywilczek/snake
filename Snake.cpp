@@ -18,8 +18,8 @@ void Snake::updateDirection(const sf::Keyboard::Key keyPressed) {
 }
 
 void Snake::move() {
-    Field *head = body.front();
-    Field *nextHeadPosition;
+    std::shared_ptr<Field> head = body.front();
+    std::shared_ptr<Field> nextHeadPosition;
     int nextX = head->getX();
     int nextY = head->getY();
     switch (movingDirection) {
@@ -37,7 +37,7 @@ void Snake::move() {
             break;
     }
     previousMovingDirection = movingDirection;
-    nextHeadPosition = &area->at(nextX, nextY);
+    nextHeadPosition = std::shared_ptr<Field>(&area->at(nextX, nextY));
     bool grow = false;
     switch (nextHeadPosition->getFieldType()) {
         case Field::FieldType::WALL:
@@ -63,7 +63,7 @@ void Snake::move() {
 Snake::Snake(int startX, int startY, Area *area) : area{area} {
     area->at(startX, startY).setFieldType(Field::FieldType::SNAKE);
     area->at(startX, startY + 1).setFieldType(Field::FieldType::SNAKE);
-    body.push_back(&area->at(startX, startY));
-    body.push_back(&area->at(startX, startY + 1));
+    body.push_back(std::shared_ptr<Field>(&area->at(startX, startY)));
+    body.push_back(std::shared_ptr<Field>(&area->at(startX, startY + 1)));
 
 }

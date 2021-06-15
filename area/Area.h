@@ -47,11 +47,11 @@ private:
     std::unique_ptr<Snake> snake;
     std::set<Field *> queuedUpdates{};
     bool isGameOver{false};
-    Field *foodField{nullptr};
+    shared_ptr<Field> foodField{nullptr};
 
-    void setGame();
+    void setGameArea();
 
-    Field *pickFoodField();
+    shared_ptr<Field> pickFoodField();
 };
 
 

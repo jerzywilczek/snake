@@ -30,7 +30,7 @@ public:
 
 private:
     Area *area;
-    std::list<Field *> body{};
+    std::list<std::shared_ptr<Field>> body{};
     Direction movingDirection{Direction::UP};
     Direction previousMovingDirection{Direction::UP};
 };
